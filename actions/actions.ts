@@ -37,7 +37,10 @@ export type getTimeType = {
   dstActive: boolean;
 };
 
-export async function getTime(timezone: string): Promise<getTimeType> {
+export async function getTime(
+  timezone: string
+): Promise<getTimeType> {
+  // throw new Error("wrong");
   const result = await fetch(
     `https://timeapi.io/api/Time/current/zone?timeZone=${timezone}`,
     {
@@ -47,6 +50,8 @@ export async function getTime(timezone: string): Promise<getTimeType> {
 
   if (!result.ok) {
     throw new Error("Something went wrong");
+
+    // return { message: "Something went wrong" };
   }
 
   const data = await result.json();
